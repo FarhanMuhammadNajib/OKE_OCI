@@ -33,9 +33,34 @@ jobs:
       name: Kubernetes Deploy
       environment: "Prod"
       runs-on: Ubuntu-latest
+      env:
+        OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+        OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+        OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+        OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+        OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
       steps:
         - name: Check out the repo
           uses: actions/checkout@v3
           with:
             fetch-depth: 0
-            
+        - name: Make .kube dir
+          uses: oracle-actions/run-oci-cli-command@v1.1.1
+          with:
+            command: mkdir -p $HOME/.kube
+        - name: move to .kube dir
+          uses: oracle-actions/run-oci-cli-command@v1.1.1
+          with:
+            command: cd && cd .kube
+        - name: Kube config
+          uses: oracle-actions/run-oci-cli-command@v1.1.1
+          with:
+            command: oci ce cluster create-kubeconfig --cluster-id ${{ secrets.OKE_OCID }} --file ~/.kube/config --region ${{secrets.OCI_CLI_REGION}} --token-version 2.0.0
+        - name: Set Environtment variable for local
+          uses: oracle-actions/run-oci-cli-command@v1.1.1
+          with:
+            command: export KUBECONFIG=$HOME/.kube/config
+        - name: Remove kube config after use
+          uses: oracle-actions/run-oci-cli-command@v1.1.1
+          with:
+            command: rm config
