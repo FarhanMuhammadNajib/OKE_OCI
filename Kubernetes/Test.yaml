@@ -3,11 +3,11 @@ kind: Pod
 metadata:
    name: hbd
    labels:
-     name: hbd
+     name: $img
 spec:
    containers:
    - name : nginx
-     image: $img
+     image: farhanmuhammadnajib/test:latest-HappyBirthdayApp
      ports:
      - containerPort: 80
 ---
