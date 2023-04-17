@@ -3,11 +3,11 @@ kind: Pod
 metadata:
    name: hbd
    labels:
-     name: hbd
+     name: $img
 spec:
    containers:
    - name : nginx
-     image: $img
+     image: ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:${{vars.Docker_Tags}}-Latest
      ports:
      - containerPort: 80
 ---
