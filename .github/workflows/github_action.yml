@@ -50,7 +50,7 @@ jobs:
         with:
           cluster: ${{ secrets.OKE_CLUSTER_OCID }}
       - name: Deploy App
-        run: kubectl apply -f kubernetes/Test.yaml
+        run: kubectl apply -f Kubernetes/Test.yaml
       - name: check pod
         run: kubectl get pods
       - name: Check service
