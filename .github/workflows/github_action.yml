@@ -54,5 +54,5 @@ jobs:
       - name: check pod
         run: kubectl get pods
       - name: Check service
-        run: Kubectl get service
+        run: kubectl get service
       
