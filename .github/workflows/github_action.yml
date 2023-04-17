@@ -52,7 +52,7 @@ jobs:
         with:
           cluster: ${{ secrets.OKE_CLUSTER_OCID }}
       - name: Set environtmen variable for kubernetes file
-        run: export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} && export Docker_Repo= ${{vars.Docker_Repo}} && export Docker_Tags=${{vars.Docker_Tags}}
+        run: export image=${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:${{vars.Docker_Tags}}-Latest
       - name: Deploy App
         run: envsubst < Kubernetes/Test.yaml | kubectl apply -f -
       - name: check pod
