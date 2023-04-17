@@ -53,8 +53,6 @@ jobs:
           cluster: ${{ secrets.OKE_CLUSTER_OCID }}
       - name: Deploy App
         run: export img=${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest && envsubst < Kubernetes/Test.yaml | kubectl apply -f -
-      - name: check pod
-        run: kubectl get pods && kubectl describe pod hbd
-      - name: Check service
-        run: kubectl get service 
+      - name: Check pod and service
+        run: kubectl get pods && kubectl get service && kubectl describe pod hbd 
       
