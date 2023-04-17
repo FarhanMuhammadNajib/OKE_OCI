@@ -54,7 +54,7 @@ jobs:
       - name: Set environtmen variable for kubernetes file
         run: export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }} && export Docker_Repo= ${{vars.Docker_Repo}} && export Docker_Tags=${{vars.Docker_Tags}}
       - name: Deploy App
-        run: envsubst < test.yaml | kubectl apply -f -
+        run: envsubst < Kubernetes/test.yaml | kubectl apply -f -
       - name: check pod
         run: kubectl get pods
       - name: Check service
