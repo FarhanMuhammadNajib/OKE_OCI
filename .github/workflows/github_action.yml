@@ -29,7 +29,7 @@ jobs:
   #       context: .
   #       push: true
   #       tags: farhanmuhammadnajib/${{vars.Docker_Repo}}:${{vars.Docker_Tags}}
-  install-kubectl:
+  DeployOKE:
     runs-on: ubuntu-latest
     name: Install Kubectl for OKE
     env:
@@ -46,6 +46,6 @@ jobs:
         with:
           cluster: ${{ secrets.OKE_CLUSTER_OCID }}
       - name: Run Kubectl
-        run: kubectl get version
+        run: kubectl version
       - name: Run Kubectl
         run: kubectl get pods
