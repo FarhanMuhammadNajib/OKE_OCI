@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-   name: $img
+   name: hbd
    labels:
      name: hbd
 spec:
    containers:
    - name : nginx
-     image: farhanmuhammadnajib/test:latest-HappyBirthdayApp
+     image: $img
      ports:
      - containerPort: 80
 ---
