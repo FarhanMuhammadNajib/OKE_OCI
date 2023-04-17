@@ -48,14 +48,6 @@ jobs:
           uses: oracle-actions/run-oci-cli-command@v1.1.1
           with:
             command: mkdir -p $HOME/.kube
-        - name: move to .kube dir
-          uses: oracle-actions/run-oci-cli-command@v1.1.1
-          with:
-            command: cd && cd .kube
-        - name: Remove kube config if still exisit
-          uses: oracle-actions/run-oci-cli-command@v1.1.1
-          with:
-            command: rm config
         - name: Kube config
           uses: oracle-actions/run-oci-cli-command@v1.1.1
           with:
@@ -64,4 +56,3 @@ jobs:
           uses: oracle-actions/run-oci-cli-command@v1.1.1
           with:
             command: export KUBECONFIG=$HOME/.kube/config
-        
