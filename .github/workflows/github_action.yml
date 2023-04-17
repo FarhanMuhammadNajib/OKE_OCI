@@ -45,7 +45,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install dependencies for env purpose(envsubset)
-        run: apt-getg y install getext-base
+        run: apt-get install gettext-base -y
       - name: Configure Kubectl
         uses: oracle-actions/configure-kubectl-oke@v1.3.1
         id: test-configure-kubectl-oke-action
