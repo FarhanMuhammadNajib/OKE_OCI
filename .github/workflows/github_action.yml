@@ -31,7 +31,7 @@ jobs:
   #       tags: farhanmuhammadnajib/${{vars.Docker_Repo}}:${{vars.Docker_Tags}}
   DeployOKE:
     runs-on: ubuntu-latest
-    name: Install Kubectl for OKE
+    name: Deploy with Kubectl for OKE
     env:
       OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
       OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
@@ -40,6 +40,10 @@ jobs:
       OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
 
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Configure Kubectl
         uses: oracle-actions/configure-kubectl-oke@v1.3.1
         id: test-configure-kubectl-oke-action
