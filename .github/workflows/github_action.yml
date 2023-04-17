@@ -45,7 +45,10 @@ jobs:
         id: test-configure-kubectl-oke-action
         with:
           cluster: ${{ secrets.OKE_CLUSTER_OCID }}
-      - name: Run Kubectl
-        run: kubectl version
-      - name: Run Kubectl
+      - name: Deploy App
+        run: kubectl apply -f kubernetes/Test.yaml
+      - name: check pod
         run: kubectl get pods
+      - name: Check service
+        run: Kubectl get service
+      
