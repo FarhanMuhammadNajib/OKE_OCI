@@ -46,17 +46,17 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies for env purpose(envsubset)
         run: sudo apt-get install gettext-base -y
-      - name: Configure Kubectl
-        uses: oracle-actions/configure-kubectl-oke@v1.3.1
-        id: test-configure-kubectl-oke-action
-        with:
-          cluster: ${{ secrets.OKE_CLUSTER_OCID }}
+      # - name: Configure Kubectl
+      #   uses: oracle-actions/configure-kubectl-oke@v1.3.1
+      #   id: test-configure-kubectl-oke-action
+      #   with:
+      #     cluster: ${{ secrets.OKE_CLUSTER_OCID }}
       - name: Set environtmen variable for kubernetes file
         run: export img="farhanmuhammadnajib/${{vars.Docker_Repo}}:${{vars.Docker_Tags}}-Latest" && printenv && echo $img
       - name: Deploy App
-        run: envsubst < Kubernetes/Test.yaml> test.yaml && cat test.yaml && kubectl apply -f test.yaml
-      - name: check pod
-        run: kubectl get pods && kubectl describe pod hbd
-      - name: Check service
-        run: kubectl get service 
+        run: echo $img && envsubst < Kubernetes/Test.yaml> test.yaml && cat test.yaml #&& kubectl apply -f test.yaml
+      # - name: check pod
+      #   run: kubectl get pods && kubectl describe pod hbd
+      # - name: Check service
+      #   run: kubectl get service 
       
