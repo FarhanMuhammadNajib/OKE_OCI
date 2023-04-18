@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-   name: hbd
+   name: nginx
    labels:
-     name: hbd
+     name: nginx
 spec:
    containers:
    - name : nginx
@@ -14,10 +14,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hbd-app
+  name: nginx
 spec:
   selector:
-    name: hbd
+    name: nginx
   ports:
     - port: 80
   type: LoadBalancer
